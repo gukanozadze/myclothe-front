@@ -23,12 +23,10 @@ const BikeForm = () => {
 	const entity = useAppSelector(selectCurrentProduct)
 	const currentUser = useAppSelector(selectCurrentUser)
 
-	const [title, setTitle] = useState('')
-	const [model, setModel] = useState('')
+	const [title, setTitle] = useState('Stripped Hoodie')
+	const [description, setDescription] = useState('Hoodie designed by general kiioshi')
 	const [price, setPrice] = useState('')
-	const [color, setColor] = useState('')
-	const [location, setLocation] = useState('')
-	const [checked, setIsChecked] = useState(true)
+	const [stock, setStock] = useState(1)
 
 	const btnRef = useRef<any>()
 	const saveClick = () => {
@@ -41,18 +39,17 @@ const BikeForm = () => {
 		e.preventDefault()
 		const data = {
 			title,
-			model,
+			description,
 			price,
-			color,
-			location,
-			is_rental: checked,
+			stock,
+			user_id: currentUser?.id,
 		}
 		if (bikeId) {
 			dispatch(updateProduct({ ...data, id: bikeId }))
 		} else {
 			dispatch(postProduct({ ...data, user_id: currentUser?.id }))
 		}
-		return navigate(`/bikes`)
+		return navigate(`/clothes`)
 	}
 
 	useEffect(() => {
@@ -64,16 +61,14 @@ const BikeForm = () => {
 	useEffect(() => {
 		if (bikeId && entity) {
 			setTitle(entity.title)
-			setModel(entity.model)
+			setDescription(entity.description)
 			setPrice(entity.price.toString())
-			setColor(entity.color)
-			setLocation(entity.location)
-			setIsChecked(entity.is_rental)
+			setStock(entity.stock)
 		}
 	}, [entity])
 
 	return (
-		<Modal title='Bike' page='bikes' saveClick={saveClick}>
+		<Modal title='Clothe' page='clothes' saveClick={saveClick}>
 			<form className='pt-8 space-y-6 sm:pt-10 sm:space-y-5' onSubmit={onSubmit}>
 				<div className='space-y-6 sm:space-y-5'>
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
@@ -120,20 +115,19 @@ const BikeForm = () => {
 
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
 						<label
-							htmlFor='model'
+							htmlFor='description'
 							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
 						>
-							Model
+							Description
 						</label>
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
 							<input
 								required
 								type='text'
-								name='model'
-								id='model'
-								value={model}
-								onChange={e => setModel(e.target.value)}
-								autoComplete='family-name'
+								name='description'
+								id='description'
+								value={description}
+								onChange={e => setDescription(e.target.value)}
 								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
 							/>
 						</div>
@@ -141,62 +135,21 @@ const BikeForm = () => {
 
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
 						<label
-							htmlFor='color'
+							htmlFor='stock'
 							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
 						>
-							Color
+							stock
 						</label>
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
 							<input
 								required
-								id='color'
-								name='color'
-								type='text'
-								autoComplete='color'
-								value={color}
-								onChange={e => setColor(e.target.value)}
+								type='number'
+								name='stock'
+								id='stock'
+								value={stock}
+								onChange={e => setStock(Number(e.target.value))}
+								autoComplete='stock'
 								className='block max-w-lg w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
-							/>
-						</div>
-					</div>
-
-					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
-						<label
-							htmlFor='street-address'
-							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
-						>
-							Location
-						</label>
-						<div className='mt-1 sm:mt-0 sm:col-span-2'>
-							<input
-								required
-								type='text'
-								name='street-address'
-								id='street-address'
-								value={location}
-								onChange={e => setLocation(e.target.value)}
-								autoComplete='street-address'
-								className='block max-w-lg w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
-							/>
-						</div>
-					</div>
-
-					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5'>
-						<label
-							htmlFor='street-address'
-							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
-						>
-							Available for rent
-						</label>
-						<div className='mt-1 sm:mt-0 sm:col-span-2'>
-							<input
-								name='street-address'
-								id='street-address'
-								type='checkbox'
-								checked={checked}
-								onChange={e => setIsChecked(e.target.checked)}
-								autoComplete='street-address'
-								className='block max-w-lg w-full p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
 							/>
 						</div>
 					</div>

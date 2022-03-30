@@ -4,60 +4,46 @@ import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
 import { selectAllProducts } from '../../features/product/product-slice'
 import { Button, Rating } from '@mui/material'
-import BikeForm from './BikeForm'
+import BikeForm from './ClothesForm'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Link, Route, Routes } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
-import BikeDelete from './BikeDelete'
+import BikeDelete from './ClotheDelete'
 
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },
-	{ field: 'title', headerName: 'Title', width: 130 },
-	{ field: 'model', headerName: 'Model', width: 130 },
+	{ field: 'title', headerName: 'Title', width: 150 },
+	{ field: 'description', headerName: 'Description', width: 200 },
 	{
-		field: 'color',
-		headerName: 'Color',
-		width: 130,
+		field: 'email',
+		headerName: 'Created By',
+		width: 200,
+		renderCell: cell => <div>{cell.row.user ? cell.row.user.email : ''}</div>,
 	},
 	{
-		field: 'location',
-		headerName: 'Location',
-		width: 130,
+		field: 'stock',
+		headerName: 'Available Stock',
+		width: 150,
 	},
 	{
 		field: 'rating',
 		renderCell: cell => <Rating name='read-only' value={parseFloat(cell.value)} readOnly />,
-		type: 'number',
 		headerName: 'Rating',
 		width: 150,
 	},
 	{
-		field: 'is_rental',
-		type: 'boolean',
-		headerName: 'For Rent',
-		sortable: false,
-		width: 160,
-	},
-	// {
-	// 	field: 'available',
-	// 	type: 'boolean',
-	// 	headerName: 'Available',
-	// 	sortable: false,
-	// 	width: 160,
-	// },
-	{
 		field: 'action',
 		headerName: 'Action',
 		sortable: false,
-		renderCell: params => {
+		renderCell: cell => {
 			return (
 				<div className='flex justify-around w-full'>
-					<Link to={`/bikes/edit/${params.row.id}`}>
+					<Link to={`/clothes/edit/${cell.row.id}`}>
 						<EditIcon className='cursor-pointer text-blue-500' />
 					</Link>
 
-					<Link to={`/bikes/delete/${params.row.id}`}>
+					<Link to={`/clothes/delete/${cell.row.id}`}>
 						<DeleteIcon className='cursor-pointer text-red-500' />
 					</Link>
 				</div>
@@ -78,10 +64,10 @@ const BikeTable = () => {
 			</Routes>
 			<div className='flex justify-between mb-4'>
 				<Typography sx={{ flex: '1 1 100%' }} variant='h5' id='tableTitle' component='div'>
-					Bikes
+					Clothes
 				</Typography>
 				<Link
-					to={`/bikes/edit`}
+					to={`/clothes/edit`}
 					className='text-blue-500 cursor-pointer flex rounded-md border py-2 px-4 hover:bg-blue-400 hover:text-white'
 				>
 					<AddIcon className='' />

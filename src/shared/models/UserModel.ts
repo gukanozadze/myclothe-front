@@ -1,6 +1,6 @@
-import { ProductModel } from './models/ProductModel'
+import { ProductModel } from './ProductModel'
 
-export interface User {
+export interface UserModel {
 	id: number
 	email: string
 	is_manager: boolean

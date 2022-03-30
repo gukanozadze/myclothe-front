@@ -4,7 +4,7 @@ import Products from './pages/Products'
 import ProductView from './pages/ProductView'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Bikes from './pages/Bikes/Bikes'
+import ClothesTablePage from './pages/ClothesTable'
 import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
 
@@ -14,7 +14,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Products />} />
 				<Route path='/product/:id' element={<ProductView />} />
-				<Route path='/bikes/*' element={<Bikes />} />
+				<Route path='/clothes/*' element={<ClothesTablePage />} />
 				<Route path='/users/*' element={<Users />} />
 				<Route path='/orders' element={<Orders />} />
 				<Route path='/login' element={<Login />} />

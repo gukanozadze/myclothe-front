@@ -37,7 +37,8 @@
 		"no-shadow": "off",
 		"import/order": "off",
 		"no-param-reassign": "off",
-		"react/button-has-type": "off"
+		"react/button-has-type": "off",
+		"jsx-a11y/img-redundant-alt": "off"
 	},
 	"settings": {
 		"import/resolver": {

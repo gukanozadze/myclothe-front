@@ -4,7 +4,7 @@ export const shared = (...classes: string[]) => {
 
 export const navigation = [
 	{ name: 'Products', to: '/' },
-	{ name: 'Bikes', to: '/bikes', admin: true },
+	{ name: 'Clothes', to: '/clothes', admin: true },
 	{ name: 'Users', to: '/users', admin: true },
 	{ name: 'Orders', to: '/orders', admin: true },
 ]

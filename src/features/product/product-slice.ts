@@ -8,12 +8,11 @@ import {
 	postProductCall,
 	updateProductCall,
 } from './api'
-import { Product } from '../../shared/Product'
-import { StatusOnlineIcon } from '@heroicons/react/outline'
+import { ProductModel } from '../../shared/models/ProductModel'
 
 interface ProductState {
 	list: any[]
-	entity: Product | null
+	entity: ProductModel | null
 	status: string
 }
 const initialState: ProductState = {
@@ -51,7 +50,7 @@ const productSlice = createSlice({
 
 			const foundIndex = state.list.findIndex(x => x.id === payload.id)
 			const newList = state.list
-			newList[foundIndex] = payload
+			newList[foundIndex] = { ...newList[foundIndex], ...payload }
 
 			state.list = [...newList]
 		})

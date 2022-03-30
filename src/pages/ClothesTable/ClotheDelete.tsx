@@ -14,7 +14,7 @@ const BikeDelete = () => {
 		dispatch(deleteOneProduct(bikeId))
 		return navigate('/bikes')
 	}
-	return <Modal title='Bike' page='bikes' del saveClick={saveClick} />
+	return <Modal title='Clothe' page='bikes' del saveClick={saveClick} />
 }
 
 export default BikeDelete

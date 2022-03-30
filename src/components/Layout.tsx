@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { log } from 'util'
-import axios from 'axios'
-import { Navigate } from 'react-router-dom'
-import Nav from './Nav'
+import Header from './Header'
 import Title from './Title'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { loginFromLocalstorage, selectCurrentUser } from '../features/user/user-slice'
@@ -27,10 +24,11 @@ const Layout = ({ title, children, backButton }: Props) => {
 			dispatch(loginFromLocalstorage(id))
 		}
 	}, [''])
+
 	return (
 		<div className='min-h-full'>
-			<div className='bg-gray-800 pb-32'>
-				<Nav />
+			<div className='bg-indigo-600 pb-32'>
+				<Header />
 
 				<Title title={title} backButton={backButton} />
 			</div>

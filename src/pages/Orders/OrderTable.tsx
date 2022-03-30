@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
 	{ field: 'time', type: 'dateTime', width: 200 },
 	{
 		field: 'title',
-		headerName: 'Bike Name',
+		headerName: 'Clothe Name',
 		width: 150,
 		renderCell: cell => {
 			return (
@@ -22,7 +22,7 @@ const columns: GridColDef[] = [
 			)
 		},
 	},
-	{ field: 'price', headerName: 'Bike Price', width: 150 },
+	{ field: 'price', headerName: 'Clothe Price', width: 150 },
 	{
 		field: 'complete',
 		headerName: 'Action',

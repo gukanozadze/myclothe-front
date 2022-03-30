@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Product } from '../../shared/Product'
 
 export async function getAllProductsCall(params = {}) {
 	const response = await axios.get('products', { params })

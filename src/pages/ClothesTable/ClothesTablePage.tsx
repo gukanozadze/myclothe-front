@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
-import BikeTable from './BikeTable'
+import ClotheTable from './ClotheTable'
 import { useAppDispatch } from '../../hooks'
 import { getAllProducts } from '../../features/product/product-slice'
 
-const Bikes = () => {
+const ClothesTablePage = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -12,12 +12,12 @@ const Bikes = () => {
 	}, [''])
 
 	return (
-		<Layout title='Bikes'>
+		<Layout title='Clothes'>
 			<div>
-				<BikeTable />
+				<ClotheTable />
 			</div>
 		</Layout>
 	)
 }
 
-export default Bikes
+export default ClothesTablePage
