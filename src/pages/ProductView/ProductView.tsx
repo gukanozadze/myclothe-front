@@ -26,7 +26,6 @@ const ProductView = () => {
 		if (entity && currentUser) {
 			dispatch(
 				postOrder({
-					complete: true,
 					product_id: entity.id,
 					user_id: currentUser.id,
 				})
@@ -62,7 +61,7 @@ const ProductView = () => {
 								</h4>
 								<div className='flex-1 border-t-2 border-gray-200' />
 							</div>
-							<ul className='mt-8 space-y-5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5'>
+							<ul className='mt-2 flex flex-col gap-2'>
 								<li className='flex items-start lg:col-span-1'>
 									<div className='flex-shrink-0'>
 										<CheckCircleIcon
@@ -70,7 +69,17 @@ const ProductView = () => {
 											aria-hidden='true'
 										/>
 									</div>
-									<p className='ml-3 text-sm text-gray-700'>Free delivery</p>
+									<p className='ml-3 text-sm text-gray-700'>Free & Fast delivery</p>
+								</li>
+
+								<li className='flex items-start lg:col-span-1'>
+									<div className='flex-shrink-0'>
+										<CheckCircleIcon
+											className='h-5 w-5 text-green-400'
+											aria-hidden='true'
+										/>
+									</div>
+									<p className='ml-3 text-sm text-gray-700'>100% cotton</p>
 								</li>
 							</ul>
 						</div>
@@ -98,13 +107,17 @@ const ProductView = () => {
 							<button
 								onClick={handleBuy}
 								disabled={!entity.stock}
-								className='flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900'
+								className='flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'
 							>
 								Buy Now
 							</button>
 						</div>
-						{!entity.stock && (
+						{!entity.stock ? (
 							<p className='text-lg mt-4 font-medium text-red-500'>Out of stock</p>
+						) : (
+							<p className='text-sm mt-4 font-medium text-gray-500'>
+								Available - {entity.stock}
+							</p>
 						)}
 					</div>
 				</div>

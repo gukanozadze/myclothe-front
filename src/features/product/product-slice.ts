@@ -46,18 +46,17 @@ const productSlice = createSlice({
 
 		builder.addCase(updateProduct.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
-			state.entity = payload
+			state.entity = { ...state.entity, ...payload }
 
-			const foundIndex = state.list.findIndex(x => x.id === payload.id)
-			const newList = state.list
-			newList[foundIndex] = { ...newList[foundIndex], ...payload }
-
-			state.list = [...newList]
+			const updatedProductIndex = state.list.findIndex(product => product.id === payload.id)
+			state.list = state.list.map((content, i) =>
+				i === updatedProductIndex ? { ...state.entity, ...payload } : content
+			)
 		})
 
 		builder.addCase(getOneProduct.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
-			state.entity = payload
+			state.entity = { ...state.entity, ...payload }
 		})
 
 		builder.addCase(postProduct.fulfilled, (state, { payload }) => {
