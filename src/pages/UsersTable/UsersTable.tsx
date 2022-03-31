@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import React from 'react'
+import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid'
 import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
-import { selectAllProducts } from '../../features/product/product-slice'
-import { Button, Rating } from '@mui/material'
 import UserForm from './UserForm'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -11,6 +9,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import UserDelete from './UserDelete'
 import { selectAllUsers } from '../../features/user/user-slice'
+import clsx from 'clsx'
 
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },
@@ -26,10 +25,13 @@ const columns: GridColDef[] = [
 	{
 		field: 'action',
 		headerName: 'Action',
+		flex: 1,
 		sortable: false,
+		type: 'number',
+		headerClassName: 'text-lg',
 		renderCell: params => {
 			return (
-				<div className='flex justify-around w-full'>
+				<div className='flex justify-end gap-2 w-full mr-2'>
 					<Link to={`/users/edit/${params.row.id}`}>
 						<EditIcon className='cursor-pointer text-blue-500' />
 					</Link>

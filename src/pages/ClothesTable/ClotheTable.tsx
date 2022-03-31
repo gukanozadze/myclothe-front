@@ -35,10 +35,13 @@ const columns: GridColDef[] = [
 	{
 		field: 'action',
 		headerName: 'Action',
+		type: 'number',
 		sortable: false,
+		flex: 1,
+		headerClassName: 'text-lg',
 		renderCell: cell => {
 			return (
-				<div className='flex justify-around w-full'>
+				<div className='flex justify-end gap-2 w-full'>
 					<Link to={`/clothes/edit/${cell.row.id}`}>
 						<EditIcon className='cursor-pointer text-blue-500' />
 					</Link>
@@ -62,15 +65,16 @@ const BikeTable = () => {
 				<Route path='edit' element={<BikeForm />} />
 				<Route path='delete/:id' element={<BikeDelete />} />
 			</Routes>
+
 			<div className='flex justify-between mb-4'>
 				<Typography sx={{ flex: '1 1 100%' }} variant='h5' id='tableTitle' component='div'>
-					Clothes
+					Manage Inventory
 				</Typography>
 				<Link
 					to={`/clothes/edit`}
-					className='text-blue-500 cursor-pointer flex rounded-md border py-2 px-4 hover:bg-blue-400 hover:text-white'
+					className='text-white bg-indigo-500 cursor-pointer flex rounded-md border py-2 px-4 hover:bg-indigo-600 hover:text-white'
 				>
-					<AddIcon className='' />
+					<AddIcon />
 					<div>Create</div>
 				</Link>
 			</div>
