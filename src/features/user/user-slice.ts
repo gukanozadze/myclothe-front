@@ -47,9 +47,6 @@ const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		usersSuccess(state, action) {
-			state.list = action.payload
-		},
 		resetUserState: () => initialState,
 	},
 	extraReducers: builder => {
@@ -117,7 +114,7 @@ export const selectCurrentUser = (state: RootState) => state.users.currentUser
 export const selectCurrentUserForEdit = (state: RootState) => state.users.entity
 
 // Export each reducers function defined in createSlice
-export const { usersSuccess, resetUserState } = userSlice.actions
+export const { resetUserState } = userSlice.actions
 
 // Export default the slice reducer
 export default userSlice.reducer

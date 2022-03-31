@@ -1,26 +1,26 @@
-import { Link, Navigate } from 'react-router-dom'
-import React, { SyntheticEvent, useState } from 'react'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { loginUser, selectUserLoginStatus } from '../features/user/user-slice'
 import { useAppDispatch, useAppSelector } from '../hooks'
 
 const Login = () => {
 	const [password, setPassword] = useState('')
 	const [email, setEmail] = useState('')
-
+	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const status = useAppSelector(selectUserLoginStatus)
 	const [error, setError] = useState('')
-	const [redirect, setRedirect] = useState(false)
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault()
 		dispatch(loginUser({ email, password }))
 	}
 
-	if (status === 'success') {
-		return <Navigate to='/' />
-	}
+	useEffect(() => {
+		if (localStorage.getItem('user') || status === 'success') {
+			navigate('/')
+		}
+	}, [status])
 
 	return (
 		<div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>

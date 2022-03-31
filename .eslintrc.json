@@ -38,7 +38,8 @@
 		"import/order": "off",
 		"no-param-reassign": "off",
 		"react/button-has-type": "off",
-		"jsx-a11y/img-redundant-alt": "off"
+		"jsx-a11y/img-redundant-alt": "off",
+		"consistent-return": "off"
 	},
 	"settings": {
 		"import/resolver": {

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import orderSlice from './features/orders/order-slice'
+import orderSlice from './features/order/order-slice'
 import productSlice from './features/product/product-slice'
 import userSlice from './features/user/user-slice'
 
@@ -13,7 +13,7 @@ export const store = configureStore({
 		orders: orderSlice,
 	},
 	// do not forget this
-	devTools: process.env.NODE_ENV !== 'production',
+	devTools: true,
 })
 
 // Export some helper types used to improve type-checking

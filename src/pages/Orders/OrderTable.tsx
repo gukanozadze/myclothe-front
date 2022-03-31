@@ -2,7 +2,7 @@ import React from 'react'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
-import { selectAllOrders } from '../../features/orders/order-slice'
+import { selectAllOrders } from '../../features/order/order-slice'
 import { Link } from 'react-router-dom'
 
 const columns: GridColDef[] = [

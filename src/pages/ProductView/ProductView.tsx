@@ -5,7 +5,7 @@ import { getOneProduct, selectProductState, updateProduct } from '../../features
 import { useParams } from 'react-router-dom'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { selectUserState } from '../../features/user/user-slice'
-import { postOrder } from '../../features/orders/order-slice'
+import { postOrder } from '../../features/order/order-slice'
 import ProductRating from './ProductRating'
 
 type UrlParams = {

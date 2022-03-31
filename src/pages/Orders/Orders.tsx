@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { useAppDispatch } from '../../hooks'
-import { getAllOrders } from '../../features/orders/order-slice'
+import { getAllOrders } from '../../features/order/order-slice'
 import OrderTable from './OrderTable'
 
 const Orders = () => {

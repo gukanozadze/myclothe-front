@@ -2,11 +2,17 @@ export const shared = (...classes: string[]) => {
 	return classes.filter(Boolean).join(' ')
 }
 
-export const navigation = [
+export const pageNavigation = [
 	{ name: 'Products', to: '/' },
 	{ name: 'Clothes', to: '/clothes', admin: true },
 	{ name: 'Users', to: '/users', admin: true },
 	{ name: 'Orders', to: '/orders', admin: true },
+]
+
+export const menuNavigation = [
+	{ name: 'profile', to: '/profile/orders' },
+	{ name: 'Orders', to: '/profile/orders' },
+	{ name: 'logout', to: '/logout' },
 ]
 
 export const user = {

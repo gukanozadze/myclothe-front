@@ -3,6 +3,7 @@ import Header from './Header'
 import Title from './Title'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { loginFromLocalstorage, selectCurrentUser } from '../features/user/user-slice'
+import { useNavigate } from 'react-router-dom'
 
 const defaultProps = {
 	backButton: false,
@@ -14,7 +15,8 @@ type Props = {
 } & typeof defaultProps
 
 const Layout = ({ title, children, backButton }: Props) => {
-	const [redirect, setRedirect] = useState(false)
+	const navigate = useNavigate()
+
 	const dispatch = useAppDispatch()
 	const user = useAppSelector(selectCurrentUser)
 
@@ -22,6 +24,10 @@ const Layout = ({ title, children, backButton }: Props) => {
 		const id = localStorage.getItem('user')
 		if (id && !user) {
 			dispatch(loginFromLocalstorage(id))
+		}
+
+		if (!id) {
+			navigate('/login')
 		}
 	}, [''])
 

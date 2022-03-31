@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
-import { navigation, user } from '../shared/shared'
+import { menuNavigation, pageNavigation, user } from '../shared/shared'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link, NavLink } from 'react-router-dom'
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ')
@@ -19,28 +20,31 @@ const Header = () => {
 						<div className='relative h-16 flex items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25'>
 							<div className='px-2 flex items-center lg:px-0'>
 								<div className='flex-shrink-0'>
-									<img
-										className='block h-8 w-8'
-										src='https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg'
-										alt='Workflow'
-									/>
+									<Link to='/'>
+										<img
+											className='block h-8 w-8'
+											src='https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg'
+											alt='Workflow'
+										/>
+									</Link>
 								</div>
 								<div className='hidden lg:block lg:ml-10'>
 									<div className='flex space-x-4'>
-										{navigation.map((item, i) => (
-											<a
+										{pageNavigation.map((item, i) => (
+											<NavLink
 												key={item.name}
-												href={item.to}
-												className={classNames(
-													i === 0
-														? 'bg-indigo-700 text-white'
-														: 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
-													'rounded-md py-2 px-3 text-sm font-medium'
-												)}
-												aria-current={i === 0 ? 'page' : undefined}
+												to={item.to}
+												className={({ isActive }) =>
+													classNames(
+														isActive
+															? 'bg-indigo-700 text-white'
+															: 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
+														'rounded-md py-2 px-3 text-sm font-medium'
+													)
+												}
 											>
 												{item.name}
-											</a>
+											</NavLink>
 										))}
 									</div>
 								</div>
@@ -88,18 +92,20 @@ const Header = () => {
 											leaveTo='transform opacity-0 scale-95'
 										>
 											<Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-												{navigation.map(item => (
+												{menuNavigation.map(item => (
 													<Menu.Item key={item.name}>
 														{({ active }) => (
-															<a
-																href={item.to}
-																className={classNames(
-																	active ? 'bg-gray-100' : '',
-																	'block py-2 px-4 text-sm text-gray-700'
-																)}
+															<NavLink
+																to={item.to}
+																className={({ isActive }) =>
+																	classNames(
+																		isActive ? 'bg-gray-100' : '',
+																		'block py-2 px-4 text-sm text-gray-700'
+																	)
+																}
 															>
 																{item.name}
-															</a>
+															</NavLink>
 														)}
 													</Menu.Item>
 												))}
@@ -113,21 +119,21 @@ const Header = () => {
 
 					<Disclosure.Panel className='lg:hidden'>
 						<div className='px-2 pt-2 pb-3 space-y-1'>
-							{navigation.map((item, i) => (
-								<Disclosure.Button
+							{pageNavigation.map((item, i) => (
+								<NavLink
 									key={item.name}
-									as='a'
-									href={item.to}
-									className={classNames(
-										i === 0
-											? 'bg-indigo-700 text-white'
-											: 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
-										'block rounded-md py-2 px-3 text-base font-medium'
-									)}
-									aria-current={i === 0 ? 'page' : undefined}
+									to={item.to}
+									className={({ isActive }) =>
+										classNames(
+											isActive
+												? 'bg-indigo-700 text-white'
+												: 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
+											'block rounded-md py-2 px-3 text-base font-medium'
+										)
+									}
 								>
 									{item.name}
-								</Disclosure.Button>
+								</NavLink>
 							))}
 						</div>
 						<div className='pt-4 pb-3 border-t border-indigo-700'>
@@ -148,7 +154,7 @@ const Header = () => {
 								</button>
 							</div>
 							<div className='mt-3 px-2 space-y-1'>
-								{navigation.map(item => (
+								{menuNavigation.map(item => (
 									<Disclosure.Button
 										key={item.name}
 										as='a'

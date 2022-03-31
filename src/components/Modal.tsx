@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { Navigate, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const Modal = ({ children, title, page, del, saveClick }: any) => {
 	const params = useParams()

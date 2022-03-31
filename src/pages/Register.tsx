@@ -1,6 +1,6 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { registerUser, selectUserLoginStatus } from '../features/user/user-slice'
 
 const Register = () => {
@@ -8,6 +8,7 @@ const Register = () => {
 	const [email, setEmail] = useState('gukanozadze@gmail.com')
 	const [password_confirm, setPasswordConfirm] = useState('1234')
 	const [is_manager, setIsManager] = useState(false)
+	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const status = useAppSelector(selectUserLoginStatus)
 
@@ -25,9 +26,12 @@ const Register = () => {
 			})
 		)
 	}
-	if (status === 'success') {
-		return <Navigate to='/' />
-	}
+
+	useEffect(() => {
+		if (localStorage.getItem('user') || status === 'success') {
+			navigate('/')
+		}
+	}, [status])
 
 	return (
 		<div className='min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8'>

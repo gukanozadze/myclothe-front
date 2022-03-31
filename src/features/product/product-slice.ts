@@ -33,9 +33,6 @@ const productSlice = createSlice({
 	name: 'product',
 	initialState,
 	reducers: {
-		productsSuccess(state, action) {
-			state.list = action.payload
-		},
 		resetProductState: () => initialState,
 	},
 	extraReducers: builder => {
@@ -76,7 +73,7 @@ export const selectAllProducts = (state: RootState) => state.products.list
 export const selectCurrentProduct = (state: RootState) => state.products.entity
 
 // Export each reducers function defined in createSlice
-export const { productsSuccess, resetProductState } = productSlice.actions
+export const { resetProductState } = productSlice.actions
 
 // Export default the slice reducer
 export default productSlice.reducer

@@ -7,6 +7,8 @@ import Register from './pages/Register'
 import ClothesTablePage from './pages/ClothesTable'
 import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
+import Logout from './pages/Logout'
+import NotFound from './pages/NotFound'
 
 function App() {
 	return (
@@ -19,6 +21,9 @@ function App() {
 				<Route path='/orders' element={<Orders />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
+				<Route path='/logout' element={<Logout />} />
+
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	)
