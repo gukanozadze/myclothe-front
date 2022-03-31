@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from '../../shared/Modal'
+import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks'
 import { postProduct, deleteOneProduct } from '../../features/product/product-slice'

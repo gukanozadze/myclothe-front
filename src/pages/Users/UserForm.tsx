@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useRef, useState } from 'react'
-import Modal from '../../shared/Modal'
+import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 

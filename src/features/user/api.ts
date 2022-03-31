@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserForm } from '../../shared/User'
+import { UserForm } from '../../shared/models/UserModel'
 
 export async function postLoginUserCall(data: { email: string; password: string }) {
 	const response = await axios.post('login', data)

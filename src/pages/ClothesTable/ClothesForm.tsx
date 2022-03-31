@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-no-bind */
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
-import Modal from '../../shared/Modal'
+import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import {

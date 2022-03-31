@@ -12,11 +12,11 @@ import {
 	postLoginUserCall,
 	postRegisterUserCall,
 } from './api'
-import { User } from '../../shared/User'
+import { UserModel } from '../../shared/models/UserModel'
 
 interface UserState {
 	list: any[]
-	currentUser: User | null
+	currentUser: UserModel | null
 	entity: any
 	status: string
 	loginStatus: string

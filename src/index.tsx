@@ -6,7 +6,8 @@ import App from './App'
 import { Provider } from 'react-redux'
 import { store } from './store'
 
-axios.defaults.baseURL = 'http://localhost:8000/api'
+const { REACT_APP_API_HOST } = process.env
+axios.defaults.baseURL = `${REACT_APP_API_HOST}/api`
 axios.defaults.withCredentials = true
 
 ReactDOM.render(

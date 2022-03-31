@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { OrderForm } from '../../shared/OrderForm'
+import { OrderForm } from '../../shared/models/OrderForm'
 
 export async function postOrderCall(data: OrderForm) {
 	const response = await axios.post('orders', data)
