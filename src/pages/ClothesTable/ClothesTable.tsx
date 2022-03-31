@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import React from 'react'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
 import { selectAllProducts } from '../../features/product/product-slice'
-import { Button, Rating } from '@mui/material'
+import { Rating } from '@mui/material'
 import BikeForm from './ClothesForm'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -25,12 +25,15 @@ const columns: GridColDef[] = [
 		field: 'stock',
 		headerName: 'Available Stock',
 		width: 150,
+		align: 'center',
+		headerAlign: 'center',
 	},
 	{
 		field: 'rating',
 		renderCell: cell => <Rating name='read-only' value={parseFloat(cell.value)} readOnly />,
 		headerName: 'Rating',
-		width: 150,
+		headerAlign: 'center',
+		width: 130,
 	},
 	{
 		field: 'action',
@@ -55,7 +58,7 @@ const columns: GridColDef[] = [
 	},
 ]
 
-const BikeTable = () => {
+const ClothesTable = () => {
 	const rows = useAppSelector(selectAllProducts)
 
 	return (
@@ -83,4 +86,4 @@ const BikeTable = () => {
 	)
 }
 
-export default BikeTable
+export default ClothesTable

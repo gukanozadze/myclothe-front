@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
 import UserForm from './UserForm'
@@ -9,7 +9,6 @@ import { Link, Route, Routes } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import UserDelete from './UserDelete'
 import { selectAllUsers } from '../../features/user/user-slice'
-import clsx from 'clsx'
 
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },

@@ -27,7 +27,7 @@ const BikeForm = () => {
 	const [description, setDescription] = useState('Hoodie designed by general kiioshi')
 	const [price, setPrice] = useState('')
 	const [image, setImageUrl] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
-	const [stock, setStock] = useState(1)
+	const [stock, setStock] = useState<number | string>(1)
 
 	const btnRef = useRef<any>()
 	const saveClick = () => {
@@ -43,7 +43,7 @@ const BikeForm = () => {
 			description,
 			price,
 			image,
-			stock,
+			stock: stock || 0,
 			user_id: currentUser?.id,
 		}
 		if (bikeId) {
@@ -169,7 +169,9 @@ const BikeForm = () => {
 								name='stock'
 								id='stock'
 								value={stock}
-								onChange={e => setStock(Number(e.target.value))}
+								onChange={e =>
+									e.target.value ? setStock(Number(e.target.value)) : setStock('')
+								}
 								autoComplete='stock'
 								className='block max-w-lg w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
 							/>
