@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { registerUser, selectUserLoginStatus } from '../features/user/user-slice'
 
 const Register = () => {
-	const [password, setPassword] = useState('123')
-	const [email, setEmail] = useState('gukanozadze@gmail.com')
-	const [password_confirm, setPasswordConfirm] = useState('1234')
+	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState('')
+	const [password_confirm, setPasswordConfirm] = useState('')
 	const [is_manager, setIsManager] = useState(false)
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()

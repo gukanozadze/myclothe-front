@@ -10,9 +10,8 @@ export const pageNavigation = [
 ]
 
 export const menuNavigation = [
-	{ name: 'profile', to: '/profile/orders' },
-	{ name: 'Orders', to: '/profile/orders' },
-	{ name: 'logout', to: '/logout' },
+	{ name: 'profile', to: '/profile' },
+	{ name: 'Logout', to: '/logout' },
 ]
 
 export const user = {

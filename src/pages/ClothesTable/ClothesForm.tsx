@@ -26,6 +26,7 @@ const BikeForm = () => {
 	const [title, setTitle] = useState('Stripped Hoodie')
 	const [description, setDescription] = useState('Hoodie designed by general kiioshi')
 	const [price, setPrice] = useState('')
+	const [image, setImageUrl] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
 	const [stock, setStock] = useState(1)
 
 	const btnRef = useRef<any>()
@@ -41,6 +42,7 @@ const BikeForm = () => {
 			title,
 			description,
 			price,
+			image,
 			stock,
 			user_id: currentUser?.id,
 		}
@@ -128,6 +130,26 @@ const BikeForm = () => {
 								id='description'
 								value={description}
 								onChange={e => setDescription(e.target.value)}
+								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
+							/>
+						</div>
+					</div>
+
+					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
+						<label
+							htmlFor='image'
+							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+						>
+							Image URL
+						</label>
+						<div className='mt-1 sm:mt-0 sm:col-span-2'>
+							<input
+								required
+								type='text'
+								name='image'
+								id='image'
+								value={image}
+								onChange={e => setImageUrl(e.target.value)}
 								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
 							/>
 						</div>

@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom'
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },
 
-	{ field: 'email', headerName: 'User', width: 200 },
-	{ field: 'time', type: 'dateTime', width: 200 },
+	{ field: 'email', headerName: 'User', width: 250 },
+	{ field: 'time', headerName: 'Time', type: 'dateTime', width: 200 },
 	{
 		field: 'title',
 		headerName: 'Clothe Name',
-		width: 150,
+		width: 250,
 		renderCell: cell => {
 			return (
 				<Link className='text-blue-500' to={`/product/${cell.row.product_id}`}>
@@ -22,12 +22,13 @@ const columns: GridColDef[] = [
 			)
 		},
 	},
-	{ field: 'price', headerName: 'Clothe Price', width: 150 },
 	{
-		field: 'complete',
-		headerName: 'Action',
-		renderCell: cell => (cell.value === true ? 'Rented' : 'Canceled'),
-		width: 230,
+		field: 'price',
+		headerName: 'Clothe Price',
+		width: 150,
+		renderCell: cell => {
+			return <div className='ml-2 text-lg'>${cell.value}</div>
+		},
 	},
 ]
 
@@ -37,8 +38,8 @@ const OrderTable = () => {
 		if (row.user && row.product) {
 			return {
 				id: row.id,
-				complete: row.complete,
-				time: new Date(row.time),
+				completed: row.completed,
+				time: new Date(row.created_at),
 				email: row.user.email,
 				product_id: row.product_id,
 				title: row.product.title,
@@ -55,7 +56,7 @@ const OrderTable = () => {
 					Orders
 				</Typography>
 				<div className='text-gray-600'>
-					Here you can find all the bikes and users who rented and canceled bikes
+					Here you can find all the orders and users who bought clothes
 				</div>
 			</div>
 			<DataGrid
