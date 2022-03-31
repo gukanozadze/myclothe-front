@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import { menuNavigation, pageNavigation, user } from '../shared/shared'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import GitHubIcon from '@mui/icons-material/GitHub'
 import { Link, NavLink } from 'react-router-dom'
 
 function classNames(...classes: string[]) {
@@ -62,13 +63,15 @@ const Header = () => {
 							</div>
 							<div className='hidden lg:block lg:ml-4'>
 								<div className='flex items-center'>
-									<button
-										type='button'
-										className='bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white'
+									<a
+										href='https://github.com/gukanozadze'
+										target='_blank'
+										rel='noreferrer'
+										className='bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white'
 									>
-										<span className='sr-only'>View notifications</span>
-										<BellIcon className='h-6 w-6' aria-hidden='true' />
-									</button>
+										<span className='sr-only'>Go to my GitHub</span>
+										<GitHubIcon className='h-6 w-6' aria-hidden='true' />
+									</a>
 
 									{/* Profile dropdown */}
 									<Menu as='div' className='ml-3 relative flex-shrink-0'>
@@ -145,13 +148,16 @@ const Header = () => {
 									<div className='text-base font-medium text-white'>{user.name}</div>
 									<div className='text-sm font-medium text-indigo-300'>{user.email}</div>
 								</div>
-								<button
-									type='button'
-									className='ml-auto bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white'
+								<a
+									href='https://github.com/gukanozadze'
+									target='_blank'
+									rel='noreferrer'
+									className='ml-auto bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200'
 								>
-									<span className='sr-only'>View notifications</span>
-									<BellIcon className='h-6 w-6' aria-hidden='true' />
-								</button>
+									<span className='sr-only'>Go to my GitHub</span>
+
+									<GitHubIcon className='h-6 w-6' aria-hidden='true' />
+								</a>
 							</div>
 							<div className='mt-3 px-2 space-y-1'>
 								{menuNavigation.map(item => (

@@ -9,6 +9,7 @@ import Users from './pages/Users/Users'
 import Orders from './pages/Orders/Orders'
 import Logout from './pages/Logout'
 import NotFound from './pages/NotFound'
+import MyOrders from './pages/MyOrders'
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 				<Route path='/clothes/*' element={<ClothesTablePage />} />
 				<Route path='/users/*' element={<Users />} />
 				<Route path='/orders' element={<Orders />} />
+				<Route path='/myorders' element={<MyOrders />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/logout' element={<Logout />} />

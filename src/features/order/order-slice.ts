@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
-import { getAllOrdersCall, postOrderCall } from './api'
+import { getAllOrdersByUserCall, getAllOrdersCall, postOrderCall } from './api'
 
 interface ProductState {
 	list: any[]
@@ -13,6 +13,7 @@ const initialState: ProductState = {
 
 export const postOrder = createAsyncThunk('orders/postOrder', postOrderCall)
 export const getAllOrders = createAsyncThunk('orders/getAllOrders', getAllOrdersCall)
+export const getAllOrdersByUser = createAsyncThunk('orders/getAllOrdersByuser', getAllOrdersByUserCall)
 
 // Create a slice containing the configuration of the state
 const orderSlice = createSlice({
@@ -28,6 +29,11 @@ const orderSlice = createSlice({
 		})
 
 		builder.addCase(getAllOrders.fulfilled, (state, { payload }) => {
+			state.status = 'successs'
+			state.list = [...payload]
+		})
+
+		builder.addCase(getAllOrdersByUser.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
 			state.list = [...payload]
 		})

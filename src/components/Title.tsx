@@ -18,7 +18,7 @@ const Title = ({ title, backButton }: Props) => {
 						onClick={() => navigate(-1)}
 						className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 border border-blue-500 hover:border-transparent rounded-full'
 					>
-						<ChevronLeftIcon className='block h-4 w-8' aria-hidden='true' />
+						<ChevronLeftIcon className='block h-4 w-8 text-white' aria-hidden='true' />
 					</button>
 				)}
 				<h1 className='text-3xl font-bold text-white'>{title}</h1>
