@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { useAppDispatch } from '../../hooks'
-import { getAllUsers } from '../../features/user/user-slice'
-import UserTable from './UserTable'
+import { getAllOrders } from '../../features/order/order-slice'
+import OrdersTable from './OrdersTable'
 
-const Users = () => {
+const OrderTablePage = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		dispatch(getAllUsers())
+		dispatch(getAllOrders())
 	}, [''])
 
 	return (
-		<Layout title='Users'>
+		<Layout title='Orders'>
 			<div>
-				<UserTable />
+				<OrdersTable />
 			</div>
 		</Layout>
 	)
 }
 
-export default Users
+export default OrderTablePage

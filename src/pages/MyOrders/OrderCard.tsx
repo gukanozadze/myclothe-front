@@ -1,6 +1,7 @@
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { convertDate } from '../../shared/shared'
 
 interface Props {
 	order: any
@@ -31,7 +32,10 @@ const OrderCard = ({ order }: Props) => {
 							<div className='hidden md:block'>
 								<div>
 									<p className='text-sm text-gray-900'>
-										Ordered on <time dateTime={order.created_at}>{order.created_at}</time>
+										Ordered on{' '}
+										<time dateTime={order.created_at} className='font-bold'>
+											{convertDate(order.created_at)}
+										</time>
 									</p>
 									<p className='mt-2 flex items-center text-sm text-gray-500'>
 										<CheckCircleIcon

@@ -7,7 +7,7 @@ interface Props {
 	product: ProductModel
 }
 
-const Product = ({ product }: Props) => {
+const ProductCard = ({ product }: Props) => {
 	return (
 		<div key={product.id} className='group relative'>
 			<div className='w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none'>
@@ -40,4 +40,4 @@ const Product = ({ product }: Props) => {
 	)
 }
 
-export default Product
+export default ProductCard

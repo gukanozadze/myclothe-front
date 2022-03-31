@@ -42,7 +42,7 @@ const columns: GridColDef[] = [
 	},
 ]
 
-const UserTable = () => {
+const UsersTable = () => {
 	const rows = useAppSelector(selectAllUsers)
 
 	return (
@@ -69,4 +69,4 @@ const UserTable = () => {
 	)
 }
 
-export default UserTable
+export default UsersTable

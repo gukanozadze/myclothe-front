@@ -5,8 +5,8 @@ import ProductView from './pages/ProductView'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ClothesTablePage from './pages/ClothesTable'
-import Users from './pages/Users/Users'
-import Orders from './pages/Orders/Orders'
+import UsersTable from './pages/UsersTable/UsersTablePage'
+import OrdersTable from './pages/OrdersTable/OrdersTablePage'
 import Logout from './pages/Logout'
 import NotFound from './pages/NotFound'
 import MyOrders from './pages/MyOrders'
@@ -18,8 +18,8 @@ function App() {
 				<Route path='/' element={<Products />} />
 				<Route path='/product/:id' element={<ProductView />} />
 				<Route path='/clothes/*' element={<ClothesTablePage />} />
-				<Route path='/users/*' element={<Users />} />
-				<Route path='/orders' element={<Orders />} />
+				<Route path='/users/*' element={<UsersTable />} />
+				<Route path='/orders' element={<OrdersTable />} />
 				<Route path='/myorders' element={<MyOrders />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />

@@ -4,42 +4,39 @@ import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
 import { selectAllOrders } from '../../features/order/order-slice'
 import { Link } from 'react-router-dom'
+import { convertDate } from '../../shared/shared'
 
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },
 
-	{ field: 'email', headerName: 'User', width: 250 },
-	{ field: 'time', headerName: 'Time', type: 'dateTime', width: 200 },
+	{ field: 'email', headerName: 'User', flex: 3 },
+	{ field: 'time', headerName: 'Time', type: 'dateTime', flex: 2 },
 	{
 		field: 'title',
-		headerName: 'Clothe Name',
-		width: 250,
-		renderCell: cell => {
-			return (
-				<Link className='text-blue-500' to={`/product/${cell.row.product_id}`}>
-					{cell.value}
-				</Link>
-			)
-		},
+		headerName: 'Name',
+		flex: 4,
+		renderCell: cell => (
+			<Link className='text-blue-500' to={`/product/${cell.row.product_id}`}>
+				{cell.value}
+			</Link>
+		),
 	},
 	{
 		field: 'price',
-		headerName: 'Clothe Price',
-		width: 150,
-		renderCell: cell => {
-			return <div className='ml-2 text-lg'>${cell.value}</div>
-		},
+		width: 110,
+		headerName: 'Price',
+		renderCell: cell => <div className='ml-2 text-lg'>${cell.value}</div>,
 	},
 ]
 
-const OrderTable = () => {
+const OrdersTable = () => {
 	const rows = useAppSelector(selectAllOrders)
 	const flattenedRows = rows.map(row => {
 		if (row.user && row.product) {
 			return {
 				id: row.id,
 				completed: row.completed,
-				time: new Date(row.created_at),
+				time: convertDate(row.created_at),
 				email: row.user.email,
 				product_id: row.product_id,
 				title: row.product.title,
@@ -69,4 +66,4 @@ const OrderTable = () => {
 	)
 }
 
-export default OrderTable
+export default OrdersTable
