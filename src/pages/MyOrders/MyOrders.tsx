@@ -9,7 +9,6 @@ const MyOrders = () => {
 	const dispatch = useAppDispatch()
 	const currentUser = useAppSelector(selectCurrentUser)
 	const orders = useAppSelector(selectAllOrders)
-	console.log('🚀 ~ file: MyOrders.tsx ~ line 11 ~ MyOrders ~ orders', orders)
 
 	useEffect(() => {
 		if (currentUser) {

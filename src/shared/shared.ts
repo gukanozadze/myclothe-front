@@ -5,8 +5,8 @@ export const shared = (...classes: string[]) => {
 export const pageNavigation = [
 	{ name: 'Products', to: '/' },
 	{ name: 'Clothes Table', to: '/clothes', admin: true },
-	{ name: 'Users', to: '/users', admin: true },
-	{ name: 'Orders', to: '/orders', admin: true },
+	{ name: 'Users Table', to: '/users', admin: true },
+	{ name: 'Orders Table', to: '/orders', admin: true },
 ]
 
 export const menuNavigation = [

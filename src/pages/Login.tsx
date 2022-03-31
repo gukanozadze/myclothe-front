@@ -17,7 +17,7 @@ const Login = () => {
 	}
 
 	const demoLogin = () => {
-		dispatch(loginUser({ email: 'gukanozadze@gmail.com', password: '123' }))
+		dispatch(loginUser({ email: 'demo@example.com', password: '123' }))
 	}
 	useEffect(() => {
 		if (localStorage.getItem('user') || status === 'success') {
