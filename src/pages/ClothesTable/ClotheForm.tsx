@@ -14,7 +14,7 @@ import {
 } from '../../features/product/product-slice'
 import { selectCurrentUser } from '../../features/user/user-slice'
 
-const BikeForm = () => {
+const ClotheForm = () => {
 	const params = useParams()
 	const bikeId = params.id
 
@@ -184,4 +184,4 @@ const BikeForm = () => {
 	)
 }
 
-export default BikeForm
+export default ClotheForm

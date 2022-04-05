@@ -2,9 +2,9 @@ import React from 'react'
 import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks'
-import { postProduct, deleteOneProduct } from '../../features/product/product-slice'
+import { deleteOneProduct } from '../../features/product/product-slice'
 
-const BikeDelete = () => {
+const ClotheDelete = () => {
 	const params = useParams()
 	const bikeId = params.id || ''
 	const navigate = useNavigate()
@@ -12,9 +12,9 @@ const BikeDelete = () => {
 
 	const saveClick = () => {
 		dispatch(deleteOneProduct(bikeId))
-		return navigate('/bikes')
+		return navigate('/clothes')
 	}
-	return <Modal title='Clothe' page='bikes' del saveClick={saveClick} />
+	return <Modal title='Clothe' page='clothes' del saveClick={saveClick} />
 }
 
-export default BikeDelete
+export default ClotheDelete

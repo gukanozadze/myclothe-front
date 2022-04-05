@@ -4,12 +4,12 @@ import Typography from '@mui/material/Typography'
 import { useAppSelector } from '../../hooks'
 import { selectAllProducts } from '../../features/product/product-slice'
 import { Rating } from '@mui/material'
-import BikeForm from './ClothesForm'
+import ClotheForm from './ClotheForm'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Link, Route, Routes } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
-import BikeDelete from './ClotheDelete'
+import ClotheDelete from './ClotheDelete'
 
 const columns: GridColDef[] = [
 	{ field: 'id', headerName: 'ID', width: 70 },
@@ -64,9 +64,9 @@ const ClothesTable = () => {
 	return (
 		<div style={{ height: 500, width: '100%', marginBottom: '10rem' }}>
 			<Routes>
-				<Route path='edit/:id' element={<BikeForm />} />
-				<Route path='edit' element={<BikeForm />} />
-				<Route path='delete/:id' element={<BikeDelete />} />
+				<Route path='edit/:id' element={<ClotheForm />} />
+				<Route path='edit' element={<ClotheForm />} />
+				<Route path='delete/:id' element={<ClotheDelete />} />
 			</Routes>
 
 			<div className='flex justify-between mb-4'>
