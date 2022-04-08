@@ -8,6 +8,7 @@ import {
 } from '../features/user/user-slice'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import TransparentLoader from '../components/TransparentLoader'
+import TextScroller from '../components/TextScroller'
 
 const Login = () => {
 	const [password, setPassword] = useState('')
@@ -24,6 +25,8 @@ const Login = () => {
 	}
 
 	const demoLogin = () => {
+		setEmail('demo@example.com')
+		setPassword('123')
 		dispatch(loginUser({ email: 'demo@example.com', password: '123' }))
 	}
 	useEffect(() => {
@@ -41,7 +44,7 @@ const Login = () => {
 					alt='Workflow'
 				/>
 				<h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-					Sign in to your account
+					{!loading ? 'Sign in to your account' : <TextScroller text='Logging you In' />}
 				</h2>
 				<p className='mt-2 text-center text-sm text-gray-600'>
 					Or{' '}
@@ -64,7 +67,8 @@ const Login = () => {
 									id='email'
 									name='email'
 									type='email'
-									autoComplete='email'
+									autoComplete='myclothe-email'
+									required
 									value={email}
 									onChange={e => setEmail(e.target.value)}
 									className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
@@ -81,7 +85,8 @@ const Login = () => {
 									id='password'
 									name='password'
 									type='password'
-									autoComplete='current-password'
+									autoComplete='myclothe-password'
+									required
 									value={password}
 									onChange={e => setPassword(e.target.value)}
 									className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
