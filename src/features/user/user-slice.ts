@@ -21,6 +21,7 @@ interface UserState {
 	status: string
 	loginStatus: string
 	error: string | null
+	loading: boolean
 }
 const initialState: UserState = {
 	list: [],
@@ -29,6 +30,7 @@ const initialState: UserState = {
 	status: '',
 	loginStatus: '',
 	error: '',
+	loading: false,
 }
 export const loginUser = createAsyncThunk('users/loginUser', postLoginUserCall)
 export const registerUser = createAsyncThunk('users/registerUser', postRegisterUserCall)
@@ -54,9 +56,17 @@ const userSlice = createSlice({
 			localStorage.setItem('user', payload.id)
 			state.status = 'success'
 			state.currentUser = payload
+			state.error = ''
+			state.loading = false
 		})
 		builder.addCase(loginUser.rejected, (state, { payload }) => {
 			state.status = 'failed'
+			state.error = payload as string
+			state.loading = false
+		})
+		builder.addCase(loginUser.pending, state => {
+			state.error = ''
+			state.loading = true
 		})
 		builder.addCase(loginFromLocalstorage.fulfilled, (state, { payload }) => {
 			state.status = 'success'
@@ -112,6 +122,8 @@ export const selectUserLoginStatus = (state: RootState) => state.users.status
 export const selectAllUsers = (state: RootState) => state.users.list
 export const selectCurrentUser = (state: RootState) => state.users.currentUser
 export const selectCurrentUserForEdit = (state: RootState) => state.users.entity
+export const selectUserLoginLoadingState = (state: RootState) => state.users.loading
+export const selectUserLoginError = (state: RootState) => state.users.error
 
 // Export each reducers function defined in createSlice
 export const { resetUserState } = userSlice.actions

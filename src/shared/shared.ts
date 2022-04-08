@@ -1,7 +1,3 @@
-export const shared = (...classes: string[]) => {
-	return classes.filter(Boolean).join(' ')
-}
-
 export const pageNavigation = [
 	{ name: 'Products', to: '/' },
 	{ name: 'Clothes Table', to: '/clothes', admin: true },

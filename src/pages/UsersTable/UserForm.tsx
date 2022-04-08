@@ -42,11 +42,13 @@ const UserForm = () => {
 			password_confirm,
 			is_manager: checked,
 		}
+
 		if (userId) {
 			dispatch(updateUser({ ...data, id: Number(userId) }))
 		} else {
 			dispatch(postUser(data))
 		}
+
 		return navigate(`/users`)
 	}
 

@@ -1,7 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React, { SyntheticEvent, useEffect, useState } from 'react'
-import { loginUser, selectUserLoginStatus } from '../features/user/user-slice'
+import {
+	loginUser,
+	selectUserLoginLoadingState,
+	selectUserLoginStatus,
+	selectUserLoginError,
+} from '../features/user/user-slice'
 import { useAppDispatch, useAppSelector } from '../hooks'
+import TransparentLoader from '../components/TransparentLoader'
 
 const Login = () => {
 	const [password, setPassword] = useState('')
@@ -9,7 +15,8 @@ const Login = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const status = useAppSelector(selectUserLoginStatus)
-	const [error, setError] = useState('')
+	const loading = useAppSelector(selectUserLoginLoadingState)
+	const error = useAppSelector(selectUserLoginError)
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault()
@@ -44,9 +51,10 @@ const Login = () => {
 				</p>
 			</div>
 
-			<div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+			<div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md relative'>
+				<TransparentLoader loading={loading} />
 				<div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
-					<form onSubmit={onSubmit} className='space-y-6'>
+					<form onSubmit={onSubmit} className='space-y-6 mb-4 '>
 						<div>
 							<label htmlFor='email' className='block text-sm font-medium text-gray-700'>
 								Email address
@@ -99,7 +107,7 @@ const Login = () => {
 							</button>
 						</div>
 					</form>
-					{error && <div className='mt-4 text-red-500'>{error}</div>}
+					{error && <div className='text-red-500 mx-auto'>{error}</div>}
 				</div>
 			</div>
 		</div>

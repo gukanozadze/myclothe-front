@@ -1,9 +1,21 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios'
 import { UserForm } from '../../shared/models/UserModel'
 
-export async function postLoginUserCall(data: { email: string; password: string }) {
-	const response = await axios.post('login', data)
-	return response.data
+interface LoginForm {
+	email: string
+	password: string
+}
+export async function postLoginUserCall(data: LoginForm, { rejectWithValue }: any) {
+	try {
+		const response = await axios.post('login', data)
+		return response.data
+	} catch (e: any) {
+		if (!e.response) {
+			return rejectWithValue('Server error')
+		}
+		return rejectWithValue(e.response.data.message)
+	}
 }
 export async function postRegisterUserCall(data: {
 	email: string
