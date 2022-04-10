@@ -21,13 +21,9 @@ const Layout = ({ title, children, backButton }: Props) => {
 	const user = useAppSelector(selectCurrentUser)
 
 	useEffect(() => {
-		const id = localStorage.getItem('user')
-		if (id && !user) {
-			dispatch(loginFromLocalstorage(id))
-		}
-
-		if (!id) {
-			navigate('/login')
+		const user_token = localStorage.getItem('user')
+		if (user_token && !user) {
+			dispatch(loginFromLocalstorage(user_token))
 		}
 	}, [''])
 

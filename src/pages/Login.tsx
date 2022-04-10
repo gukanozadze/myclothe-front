@@ -30,7 +30,7 @@ const Login = () => {
 		dispatch(loginUser({ email: 'demo@example.com', password: '123' }))
 	}
 	useEffect(() => {
-		if (localStorage.getItem('user') || status === 'success') {
+		if (localStorage.getItem('user')) {
 			navigate('/')
 		}
 	}, [status])

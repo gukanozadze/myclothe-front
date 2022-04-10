@@ -28,7 +28,7 @@ const Register = () => {
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem('user') || status === 'success') {
+		if (localStorage.getItem('user')) {
 			navigate('/')
 		}
 	}, [status])
