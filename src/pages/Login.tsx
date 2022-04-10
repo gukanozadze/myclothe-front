@@ -7,8 +7,8 @@ import {
 	selectUserLoginError,
 } from '../features/user/user-slice'
 import { useAppDispatch, useAppSelector } from '../hooks'
-import TransparentLoader from '../components/TransparentLoader'
-import TextScroller from '../components/TextScroller'
+import TransparentLoader from '../components/loaders/TransparentLoader'
+import TextLoader from '../components/loaders/TextLoader'
 
 const Login = () => {
 	const [password, setPassword] = useState('')
@@ -44,7 +44,7 @@ const Login = () => {
 					alt='Workflow'
 				/>
 				<h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-					{!loading ? 'Sign in to your account' : <TextScroller text='Logging you In' />}
+					{!loading ? 'Sign in to your account' : <TextLoader text='Logging you In' />}
 				</h2>
 				<p className='mt-2 text-center text-sm text-gray-600'>
 					Or{' '}

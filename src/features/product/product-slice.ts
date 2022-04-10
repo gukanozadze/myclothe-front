@@ -14,11 +14,14 @@ interface ProductState {
 	list: any[]
 	entity: ProductModel | null
 	status: string
+	loading: boolean
 }
+
 const initialState: ProductState = {
 	list: [],
 	entity: null,
 	status: '',
+	loading: false,
 }
 
 export const getAllProducts = createAsyncThunk('products/getAllProducts', getAllProductsCall)
@@ -38,7 +41,22 @@ const productSlice = createSlice({
 	extraReducers: builder => {
 		builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
+			state.loading = false
 			state.list = payload
+		})
+		builder.addCase(getAllProducts.pending, state => {
+			state.status = 'pending'
+			state.loading = true
+		})
+
+		builder.addCase(getOneProduct.fulfilled, (state, { payload }) => {
+			state.status = 'successs'
+			state.entity = { ...state.entity, ...payload }
+			state.loading = false
+		})
+		builder.addCase(getOneProduct.pending, state => {
+			state.status = 'pending'
+			state.loading = true
 		})
 
 		builder.addCase(updateProduct.fulfilled, (state, { payload }) => {
@@ -49,11 +67,6 @@ const productSlice = createSlice({
 			state.list = state.list.map((content, i) =>
 				i === updatedProductIndex ? { ...state.entity, ...payload } : content
 			)
-		})
-
-		builder.addCase(getOneProduct.fulfilled, (state, { payload }) => {
-			state.status = 'successs'
-			state.entity = { ...state.entity, ...payload }
 		})
 
 		builder.addCase(postProduct.fulfilled, (state, { payload }) => {
@@ -71,6 +84,7 @@ const productSlice = createSlice({
 export const selectProductState = (state: RootState) => state.products
 export const selectAllProducts = (state: RootState) => state.products.list
 export const selectCurrentProduct = (state: RootState) => state.products.entity
+export const selectProductListLoading = (state: RootState) => state.products.loading
 
 // Export each reducers function defined in createSlice
 export const { resetProductState } = productSlice.actions

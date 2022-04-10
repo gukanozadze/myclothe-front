@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { getOneProduct, selectProductState, updateProduct } from '../../features/product/product-slice'
+import {
+	getOneProduct,
+	selectProductState,
+	updateProduct,
+	selectProductListLoading,
+} from '../../features/product/product-slice'
 import { useParams } from 'react-router-dom'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { selectUserState } from '../../features/user/user-slice'
 import { postOrder } from '../../features/order/order-slice'
 import ProductRating from './ProductRating'
+import CardLoader from '../../components/loaders/CardLoader'
 
 type UrlParams = {
 	id: string
@@ -15,7 +21,7 @@ type UrlParams = {
 const ProductView = () => {
 	const params = useParams<keyof UrlParams>() as UrlParams
 	const dispatch = useAppDispatch()
-	const { entity, status } = useAppSelector(selectProductState)
+	const { entity, loading, status } = useAppSelector(selectProductState)
 	const { currentUser } = useAppSelector(selectUserState)
 
 	useEffect(() => {
@@ -39,10 +45,10 @@ const ProductView = () => {
 		}
 	}
 
-	if (!entity || !currentUser) {
+	if (!entity || !currentUser || loading) {
 		return (
 			<Layout title='Back' backButton>
-				<div>Loading</div>
+				<CardLoader />
 			</Layout>
 		)
 	}

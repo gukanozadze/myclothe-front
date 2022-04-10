@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTrail, useSprings, animated, config, useTransition } from 'react-spring'
 
-const TextScroller = ({ text }: { text: string }) => {
+const TextLoader = ({ text }: { text: string }) => {
 	const [letters, setLetters] = useState<string[]>(text.split(''))
 	const trail = useTrail(letters.length, {
 		from: {
@@ -30,4 +30,4 @@ const TextScroller = ({ text }: { text: string }) => {
 	)
 }
 
-export default TextScroller
+export default TextLoader

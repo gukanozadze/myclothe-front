@@ -39,7 +39,8 @@
 		"no-param-reassign": "off",
 		"react/button-has-type": "off",
 		"jsx-a11y/img-redundant-alt": "off",
-		"consistent-return": "off"
+		"consistent-return": "off",
+		"react/jsx-props-no-spreading": "off"
 	},
 	"settings": {
 		"import/resolver": {
