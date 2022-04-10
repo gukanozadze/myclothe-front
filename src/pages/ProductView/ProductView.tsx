@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -10,9 +11,12 @@ import {
 import { useParams } from 'react-router-dom'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { selectUserState } from '../../features/user/user-slice'
-import { postOrder } from '../../features/order/order-slice'
+import { postOrder, selectOrderLoading, selectOrderStatus } from '../../features/order/order-slice'
 import ProductRating from './ProductRating'
 import CardLoader from '../../components/loaders/CardLoader'
+import LoadingSvg from './LoadingSvg'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 type UrlParams = {
 	id: string
@@ -22,6 +26,8 @@ const ProductView = () => {
 	const params = useParams<keyof UrlParams>() as UrlParams
 	const dispatch = useAppDispatch()
 	const { entity, loading, status } = useAppSelector(selectProductState)
+	const orderLoading = useAppSelector(selectOrderLoading)
+	const orderStatus = useAppSelector(selectOrderStatus)
 	const { currentUser } = useAppSelector(selectUserState)
 
 	useEffect(() => {
@@ -45,6 +51,12 @@ const ProductView = () => {
 		}
 	}
 
+	useEffect(() => {
+		if (orderStatus === 'success') {
+			toast.success('Item bought! Added to /myorders')
+		}
+	}, [orderStatus])
+
 	if (!entity || !currentUser || loading) {
 		return (
 			<Layout title='Back' backButton>
@@ -55,6 +67,8 @@ const ProductView = () => {
 
 	return (
 		<Layout title='Back' backButton>
+			<ToastContainer />
+
 			<div className='flex rounded-lg shadow-lg flex-col sm:flex-row pb-6'>
 				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between'>
 					<div className='bg-white px-6 py-8 lg:p-12'>
@@ -112,10 +126,10 @@ const ProductView = () => {
 						<div className='rounded-md shadow'>
 							<button
 								onClick={handleBuy}
-								disabled={!entity.stock}
-								className='flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'
+								disabled={!entity.stock || orderLoading}
+								className='relative flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'
 							>
-								Buy Now
+								{orderLoading ? <LoadingSvg /> : 'Buy Now'}
 							</button>
 						</div>
 						{!entity.stock ? (
