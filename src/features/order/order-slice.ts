@@ -27,7 +27,6 @@ const orderSlice = createSlice({
 	extraReducers: builder => {
 		builder.addCase(postOrder.fulfilled, (state, { payload }) => {
 			state.status = 'success'
-			state.list = [...state.list, payload]
 			state.loading = false
 		})
 		builder.addCase(postOrder.pending, state => {
