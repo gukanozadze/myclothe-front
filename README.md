@@ -3,6 +3,8 @@
 I created my own API using Nest JS, you can clone it from here and run `docker-compose up` to initialize project and run frontend on localhost, server will start at localhost:8000 and it will provide database from Docker.
 https://github.com/gukanozadze/myclothe-back
 
+Hosted on AWS Amplify - https://myclothe.club
+
 ## Run frontend
 
 In the project directory:
