@@ -1,9 +1,20 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useParams, useNavigate } from 'react-router-dom'
+import clsx from 'clsx'
 
-const Modal = ({ children, title, page, del, saveClick }: any) => {
+interface Props {
+	title: string
+	page: number | string
+	onSaveClick?: () => void
+
+	// eslint-disable-next-line no-undef
+	children?: JSX.Element
+	del?: boolean
+}
+
+const Modal = ({ children, title, page, del, onSaveClick }: Props) => {
 	const params = useParams()
 	const navigate = useNavigate()
 
@@ -61,12 +72,12 @@ const Modal = ({ children, title, page, del, saveClick }: any) => {
 
 								<button
 									type='button'
-									className={`ml-2 inline-flex justify-center px-8 py-2 text-sm text-white font-medium ${
-										del ? 'bg-red-300' : 'bg-blue-500'
-									} border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500`}
-									onClick={() => {
-										saveClick()
-									}}
+									className={clsx(
+										'ml-2 inline-flex justify-center px-8 py-2 text-sm text-white font-medium ',
+										del ? 'bg-red-300' : 'bg-blue-500',
+										'border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500'
+									)}
+									onClick={onSaveClick}
 								>
 									{del ? 'Delete' : 'Save'}
 								</button>

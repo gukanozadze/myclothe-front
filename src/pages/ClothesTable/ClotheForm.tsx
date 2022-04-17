@@ -1,8 +1,7 @@
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-no-bind */
-import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -30,7 +29,7 @@ const ClotheForm = () => {
 	const [stock, setStock] = useState<number | string>(1)
 
 	const btnRef = useRef<any>()
-	const saveClick = () => {
+	const onSaveClick = () => {
 		if (btnRef && btnRef.current) {
 			btnRef.current.click()
 		}
@@ -70,7 +69,7 @@ const ClotheForm = () => {
 	}, [entity])
 
 	return (
-		<Modal title='Clothe' page='clothes' saveClick={saveClick}>
+		<Modal title='Clothe' page='clothes' onSaveClick={onSaveClick}>
 			<form className='pt-8 space-y-6 sm:pt-10 sm:space-y-5' onSubmit={onSubmit}>
 				<div className='space-y-6 sm:space-y-5'>
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>

@@ -6,7 +6,6 @@ import {
 	getOneProduct,
 	selectProductState,
 	updateProduct,
-	selectProductListLoading,
 } from '../../features/product/product-slice'
 import { useParams } from 'react-router-dom'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -25,7 +24,7 @@ type UrlParams = {
 const ProductView = () => {
 	const params = useParams<keyof UrlParams>() as UrlParams
 	const dispatch = useAppDispatch()
-	const { entity, loading, status } = useAppSelector(selectProductState)
+	const { entity, loading } = useAppSelector(selectProductState)
 	const orderLoading = useAppSelector(selectOrderLoading)
 	const orderStatus = useAppSelector(selectOrderStatus)
 	const { currentUser } = useAppSelector(selectUserState)

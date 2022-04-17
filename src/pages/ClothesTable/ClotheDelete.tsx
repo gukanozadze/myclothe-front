@@ -10,11 +10,11 @@ const ClotheDelete = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 
-	const saveClick = () => {
+	const onSaveClick = () => {
 		dispatch(deleteOneProduct(bikeId))
 		return navigate('/clothes')
 	}
-	return <Modal title='Clothe' page='clothes' del saveClick={saveClick} />
+	return <Modal title='Clothe' page='clothes' del onSaveClick={onSaveClick} />
 }
 
 export default ClotheDelete

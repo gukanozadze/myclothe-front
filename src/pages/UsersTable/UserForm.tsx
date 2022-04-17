@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-no-bind */
@@ -23,7 +24,7 @@ const UserForm = () => {
 	const [checked, setIsChecked] = useState(true)
 
 	const btnRef = useRef<any>()
-	const saveClick = () => {
+	const onSaveClick = () => {
 		if (btnRef && btnRef.current) {
 			btnRef.current.click()
 		}
@@ -67,7 +68,7 @@ const UserForm = () => {
 	}, [entity])
 
 	return (
-		<Modal title='User' page='users' saveClick={saveClick}>
+		<Modal title='User' page='users' onSaveClick={onSaveClick}>
 			<form className='pt-8 space-y-6 sm:pt-10 sm:space-y-5' onSubmit={onSubmit}>
 				<div className='space-y-6 sm:space-y-5'>
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>

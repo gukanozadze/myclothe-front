@@ -2,8 +2,10 @@ import React from 'react'
 import Modal from '../../components/Modal'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { postProduct, deleteOneProduct } from '../../features/product/product-slice'
-import { deleteOneUser, selectCurrentUser } from '../../features/user/user-slice'
+import {
+	deleteOneUser,
+	selectCurrentUser,
+} from '../../features/user/user-slice'
 
 const UserDelete = () => {
 	const params = useParams()
@@ -13,18 +15,18 @@ const UserDelete = () => {
 
 	const currentUser = useAppSelector(selectCurrentUser)
 
-	const saveClick = () => {
+	const onSaveClick = () => {
 		dispatch(deleteOneUser(userId))
 		return navigate('/users')
 	}
 	if (userId.toString() === currentUser?.id.toString()) {
 		return (
 			<Modal title='User' page='users'>
-				You Can not delete your self
+				<div>You Can not delete your self</div>
 			</Modal>
 		)
 	}
-	return <Modal title='User' page='users' del saveClick={saveClick} />
+	return <Modal title='User' page='users' del onSaveClick={onSaveClick} />
 }
 
 export default UserDelete
